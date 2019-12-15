@@ -1,47 +1,44 @@
 import React from 'react'
+import { Table } from "react-bootstrap";
 
 const UserTable = props => (
-  <table>
-    <thead>
+  <table className="table table-hover">
+    <thead >
       <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Address</th>
-        <th>Actions</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Address</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-      {props.users.length >0 ? (
-        props.users.map(user => (
-          <tr key={user.id}>
+      
+       { props.users.map(user => (
+          <tr key={user.id} scope="row">
             <td>{user.name}</td>
             <td>{user.age}</td>
             <td>{user.gender}</td>
             <td>{user.address}</td>
-            <td>
+            <td className="btn-group" role="group" aria-label="Basic example">
               <button
                 onClick={() => {
                   props.editRow(user)
                 }}
-                className="button muted-button"
+                className="btn btn-primary muted-button mr-2"
               >
                 Edit
               </button>
               <button
                 onClick={() => props.deleteUser(user.id)}
-                className="button muted-button"
+                className="btn btn-danger muted-button"
               >
                 Delete
               </button>
             </td>
           </tr>
-        ))
-      ) : (
-        <tr>
-          <td colSpan={3}>No users Added</td>
-        </tr>
-      )}
+        ))}
+       
     </tbody>
   </table>
 )

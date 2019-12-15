@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ValidateUser from '../ValidateUser'
 
+
 const AddUserForm = props => {
 	const initialFormState = { id: null, name: '', age: '', gender: '', address: ''  }
 	const [ user, setUser ] = useState(initialFormState)
@@ -31,43 +32,43 @@ const AddUserForm = props => {
 
 	return (
 		<form noValidate onSubmit={handleFormSubmit}>
-    <div>
-			<label>Name</label>
-      <div>
-			<input type="text" name="name" value={user.name} onChange={handleInputChange} />
-      {error.name && <p>{error.name}</p>}
-      </div>
+    <div  className="form-group ">
+			<label forHtml="name" >Name</label>
+      
+			<input className="form-control"   type="text" name="name" value={user.name} onChange={handleInputChange} placeholder="Name"/>
+      {error.name && <p className=" alert-danger ">{error.name}</p>}
+     
     </div>
 
-    <div>
+    <div className="form-group">
 			<label>Age</label>
+    
+			<input className="form-control" type="number" name="age" value={user.age} onChange={handleInputChange} placeholder="Age"/>
+      {error.age && <p className="alert-danger">{error.age}</p>}
+      
+    </div>
+
+    <div className="form-group">
+			<label forHtml="gender">Gender</label>
       <div>
-			<input type="number" name="age" value={user.age} onChange={handleInputChange} />
-      {error.age && <p>{error.age}</p>}
+			<input className="radio mr-2" type="radio" name="gender" value="Male" checked={user.gender === "Male"} onChange={handleInputChange} />
+      <label className=" mr-4">Male</label>
+      <input className="radio mr-2" type="radio" name="gender" value="Female" checked={user.gender === "Female"} onChange={handleInputChange} />
+      <label className=" mr-4">Female</label>
+      {error.gender && <p className="alert-danger">{error.gender}</p>}
       </div>
     </div>
 
-    <div>
-			<label>Gender</label>
-      <div>
-			<input type="radio" name="gender" value="Male" checked={user.gender === "Male"} onChange={handleInputChange} />
-      <label>Male</label>
-      <input type="radio" name="gender" value="Female" checked={user.gender === "Female"} onChange={handleInputChange} />
-      <label>Female</label>
-      {error.gender && <p>{error.gender}</p>}
-      </div>
-    </div>
-
-    <div>
+    <div className="form-group">
 			<label>Address</label>
-      <div>
-			<textarea  name="address" value={user.address} onChange={handleInputChange} rows="4" cols="20"/>
-      {error.address && <p>{error.address}</p>}
-      </div>
+      
+			<textarea className="form-control"  name="address" value={user.address} onChange={handleInputChange} rows="4" cols="20"/>
+      {error.address && <p className="alert-danger">{error.address}</p>}
+     
     </div>
 
     <div>
-			<button >Add new user</button>
+			<button className="btn btn-primary">Add new user</button>
     </div>
 		</form>
 	)

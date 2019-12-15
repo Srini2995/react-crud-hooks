@@ -4,6 +4,7 @@ import EditUserForm from './forms/EditUserForm'
 import UserTable from './tables/UserTable'
 import Pagination from './Pagination'
 
+
 const App = () => {
 	// Data
 	const usersData = []
@@ -54,12 +55,13 @@ const App = () => {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
 	return (
-		<div className="container">
+		<div className="container ">
+        
 			<h1>User Details</h1>
 			<div className="flex-row">
-				<div className="flex-large">
+				<div className="flex-large container-fluid">
 					{editing ? (
-						<Fragment>
+						<Fragment >
 							<h2>Edit user</h2>
 							<EditUserForm
 								editing={editing}
@@ -68,14 +70,16 @@ const App = () => {
 								updateUser={updateUser}
 							/>
 						</Fragment>
+           
 					) : (
-						<Fragment>
+						<Fragment >
 							<h2>Add user</h2>
 							<AddUserForm addUser={addUser} />
 						</Fragment>
 					)}
 				</div>
-				<div className="flex-large">
+         
+				<div className="flex-large container-fluid">
 					<h2>View users</h2>
 
           <UserTable   users={noOfCurrentUsers} editRow={editRow} deleteUser={deleteUser}  />
