@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react'
 import AddUserForm from './forms/AddUserForm'
 import EditUserForm from './forms/EditUserForm'
 import UserTable from './tables/UserTable'
+import Pagination from './Pagination'
 
 const App = () => {
 	// Data
@@ -12,12 +13,18 @@ const App = () => {
 	const [ users, setUsers ] = useState(usersData)
 	const [ currentUser, setCurrentUser ] = useState(initialFormState)
 	const [ editing, setEditing ] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [userPerPage] = useState(2);
+  
   
 
 	// CRUD operations
 	const addUser = user => {
+   
+   
 		user.id = users.length + 1
 		setUsers([ ...users, user ])
+   
 	}
 
 	const deleteUser = id => {
@@ -37,6 +44,13 @@ const App = () => {
 
 		setCurrentUser({ id: user.id, name: user.name, age: user.age, gender: user.gender, address: user.address })
 	}
+
+   // Get current posts
+  const indexOfLastUser = currentPage * userPerPage;
+  const indexOfFirstUser = indexOfLastUser - userPerPage;
+
+   // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
 	return (
 		<div className="container">
@@ -62,7 +76,12 @@ const App = () => {
 				</div>
 				<div className="flex-large">
 					<h2>View users</h2>
-					<UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
+					<UserTable  users={users} editRow={editRow} deleteUser={deleteUser} />
+           <Pagination
+        userPerPage={userPerPage}
+        totalUsers={users.length}
+        paginate={paginate}
+            />
 				</div>
 			</div>
 		</div>
