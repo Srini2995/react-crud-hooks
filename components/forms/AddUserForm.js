@@ -33,7 +33,7 @@ const AddUserForm = props => {
 	return (
 		<form noValidate onSubmit={handleFormSubmit}>
     <div  className="form-group ">
-			<label forHtml="name" >Name</label>
+			<label htmlFor="name" >Name</label>
       
 			<input className="form-control"   type="text" name="name" value={user.name} onChange={handleInputChange} placeholder="Name"/>
       {error.name && <p className=" alert-danger ">{error.name}</p>}
@@ -41,7 +41,7 @@ const AddUserForm = props => {
     </div>
 
     <div className="form-group">
-			<label>Age</label>
+			<label htmlFor="age">Age</label>
     
 			<input className="form-control" type="number" name="age" value={user.age} onChange={handleInputChange} placeholder="Age"/>
       {error.age && <p className="alert-danger">{error.age}</p>}
@@ -49,23 +49,24 @@ const AddUserForm = props => {
     </div>
 
     <div className="form-group">
-			<label forHtml="gender">Gender</label>
+			<label htmlFor="gender" >Gender</label>
       <div>
 			<input className="radio mr-2" type="radio" name="gender" value="Male" checked={user.gender === "Male"} onChange={handleInputChange} />
-      <label className=" mr-4">Male</label>
+      <label htmlFor="radioMale" className=" mr-4">Male</label>
       <input className="radio mr-2" type="radio" name="gender" value="Female" checked={user.gender === "Female"} onChange={handleInputChange} />
-      <label className=" mr-4">Female</label>
+      <label htmlFor="radioFemale" className=" mr-4">Female</label>
       {error.gender && <p className="alert-danger">{error.gender}</p>}
       </div>
     </div>
 
     <div className="form-group">
-			<label>Address</label>
+			<label htmlFor="address" >Address</label>
       
 			<textarea className="form-control"  name="address" value={user.address} onChange={handleInputChange} rows="4" cols="20"/>
       {error.address && <p className="alert-danger">{error.address}</p>}
      
     </div>
+
 
     <div>
 			<button className="btn btn-primary">Add new user</button>
